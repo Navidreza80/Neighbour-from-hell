@@ -1,0 +1,285 @@
+body{
+	//background:#000;
+	overflow:hidden;
+}
+#stage{
+	background:url(img/bg.png);
+	background-size:100% 100%;
+	
+	width:1000px;
+	height:400px;
+	margin:50px 0;
+	position:relative;
+	
+}
+
+
+#floor{
+	//border:1px solid #fff;
+	width:100%;
+	height:40%;
+	cursor: url(img/walk-cursor02.png), auto;
+	position:absolute;
+	right:0px;
+	bottom:0px;
+	transition:1s;
+}
+#door1{
+	width: 100px;
+	height: 175px;
+	position: absolute;
+	bottom: 160px;
+	left: 45px;
+	background: url(img/doorMan/1.png) no-repeat;
+	background-size: 100% 100%;
+	cursor: url(img/door-cursor.png), auto;
+
+}
+#door2{
+	width: 100px;
+	height: 175px;
+	position: absolute;
+	bottom: 160px;
+	left: 595px;
+	background: url(img/doorMan/1.png) no-repeat;
+	background-size: 100% 100%;
+	cursor: url(img/danger2.png), auto;
+}
+#dark{
+	width: 100%;
+	height: 100%;
+	background: url(img/eyes.gif) #000 no-repeat 50%;
+	background-size: 40%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#result{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	font-size: 60px;
+	text-align: center;
+	line-height: 550px;
+	color: #fff;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#result.win{
+	background: url(img/bye.png) orange no-repeat 50% 20%;
+	background-size: 28%;
+}
+#result.lose{
+	background: url(img/man.png) dodgerblue no-repeat 50% 10%;
+	background-size: 28%;
+}
+#boy{
+	background:url(img/boy-left.png);
+	background-size:100% 100%;
+	
+	cursor: url(img/giggle2.png), auto;	
+	width:90px;
+	height:180px;
+	position:absolute;
+	left:800px;
+	bottom:100px;
+	//transition:2s;
+}
+#man{
+	//background:url(img/manAngry/3.png);
+	background-size:100% 100%;
+	
+	width:100px;
+	height:190px;
+	position:absolute;
+	left:60px;
+	bottom:110px;
+	//transition:2s;
+}
+#komod{
+	background:url(img/komod.png);
+	background-size:100% 100%;
+	cursor: url(img/komod-cursor.png), auto;	
+	
+	width:120px;
+	height:200px;
+	position:absolute;
+	left:305px;
+	bottom:140px;
+	//transition:2s;
+}
+#phone{
+	//background:#fff;
+	background-size:100% 100%;
+	cursor: url(img/hand-cursor.png), auto;	
+	
+	width:50px;
+	height:50px;
+	position:absolute;
+	left:520px;
+	bottom:220px;
+	//transition:2s;
+}
+
+#musicBtn{
+	background:url(img/ring-cursor.png);
+	background-size:100% 100%;
+
+	width:50px;
+	height:50px;
+	position:absolute;
+	left:20px;
+	top:20px;
+	cursor:pointer;
+}
+
+#komod.hideIn{
+	background:url(img/komod.gif);
+	background-size:100% 100%;
+	
+	width:145px;
+	height:220px;
+	position:absolute;
+	bottom:120px;
+
+}
+
+.hide{
+	display:none;
+}
+
+.walkRight{
+	animation:walkRightAnim 1s;	
+}
+.walkLeft{
+	animation:walkLeftAnim 1s;	
+}
+.turnRight{
+	animation:turnRightAnim 0.5s forwards;	
+}
+.turnLeft{
+	animation:turnLeftAnim 0.5s forwards;	
+}
+#boy.chombat{
+	background-image: url(img/chom.png)	
+}
+#boy.jump{
+	animation:jumpAnim 0.8s forwards;		
+}
+#boy.shock{
+	animation:boyShockAnim 2s;	
+}
+.manAngry{
+	animation:manAngryAnim 1s 3 alternate forwards;		
+}
+.manDoorIn{
+	animation:manDoorInAnim 1s;	
+}
+.manDoorOut{
+	animation:manDoorOutAnim 1s;		
+}
+
+.boyDoorIn{
+	animation:boyDoorInAnim 1s;	
+}
+.boyDoorOut{
+	animation:boyDoorOutAnim 1s;		
+}
+
+@keyframes walkLeftAnim {
+	0% {background-image: url(img/boy-left.png);}
+	10% {background-image: url(img/left/1.png);}
+	20% {background-image: url(img/left/2.png);}
+	30% {background-image: url(img/left/3.png);}
+	40% {background-image: url(img/left/4.png);}
+	50% {background-image: url(img/left/5.png);}
+	60% {background-image: url(img/left/6.png);}
+	80% {background-image: url(img/left/7.png);}
+	100% {background-image: url(img/left/8.png);}	
+	}
+
+@keyframes walkRightAnim {
+	0% {background-image: url(img/boy-right.png);}
+	10% {background-image: url(img/right/1.png);}
+	20% {background-image: url(img/right/2.png);}
+	30% {background-image: url(img/right/3.png);}
+	40% {background-image: url(img/right/4.png);}
+	50% {background-image: url(img/right/5.png);}
+	60% {background-image: url(img/right/6.png);}
+	80% {background-image: url(img/right/7.png);}
+	100% {background-image: url(img/right/8.png);}	
+}
+@keyframes jumpAnim {
+  0% {background-image: url(img/chom.png);}
+  20% {background-image: url(img/chom.png);transform:translatey(-20px);}
+  30% {background-image: url(img/left/3.png);}
+  40% {background-image: url(img/left/4.png);}
+  50% {background-image: url(img/left/5.png);transform:translatey(-100px);}
+  60% {background-image: url(img/left/6.png);}
+  80% {background-image: url(img/left/7.png);}
+  100% {background-image: url(img/left/8.png);transform:translatey(0px);}	
+}
+
+@keyframes turnLeftAnim {
+	0% {background-image: url(img/boy-right.png);}
+	30% {background-image: url(img/left/3.png);}
+	60% {background-image: url(img/left/4.png);}  
+	100% {background-image: url(img/boy-left.png);}	
+}
+@keyframes turnRightAnim {
+	0% {background-image: url(img/boy-left.png);}
+	30% {background-image: url(img/right/3.png);}
+	60% {background-image: url(img/right/4.png);}
+	100% {background-image: url(img/boy-right.png);}	
+}
+
+@keyframes manDoorOutAnim {
+	0% {background-image: url(img/doorMan/1.png);}
+	25% {background-image: url(img/doorMan/2.png);}
+	50% {background-image: url(img/doorMan/3.png);}
+	75% {background-image: url(img/doorMan/4.png);}
+	100% {background-image: url(img/doorMan/5.png);}
+}
+@keyframes manDoorInAnim {
+	0% {background-image: url(img/doorMan/5.png);}
+	25% {background-image: url(img/doorMan/4.png);}
+	50% {background-image: url(img/doorMan/3.png);}
+	75% {background-image: url(img/doorMan/2.png);}
+	100% {background-image: url(img/doorMan/1.png);}
+}
+
+@keyframes boyDoorOutAnim {
+	0% {background-image: url(img/doorBoy/1.png);}
+	25% {background-image: url(img/doorBoy/2.png);}
+	50% {background-image: url(img/doorBoy/3.png);}
+	75% {background-image: url(img/doorBoy/4.png);}
+	100% {background-image: url(img/doorBoy/5.png);}
+}
+@keyframes boyDoorInAnim {
+	0% {background-image: url(img/doorBoy/5.png);}
+	25% {background-image: url(img/doorBoy/4.png);}
+	50% {background-image: url(img/doorBoy/3.png);}
+	75% {background-image: url(img/doorBoy/2.png);}
+	100% {background-image: url(img/doorBoy/1.png);}
+}
+
+@keyframes boyShockAnim {
+	0% {background-image: url(img/shock/1.png);transform:scaleY(1.8) scaleX(-2.3) translateY(-15%);}
+	10% {background-image: url(img/shock/2.png);}
+	20% {background-image: url(img/shock/3.png);}
+	30% {background-image: url(img/shock/4.png);}
+	40% {background-image: url(img/shock/5.png);}
+	50% {background-image: url(img/shock/6.png);}
+	60% {background-image: url(img/shock/7.png);}
+	70% {background-image: url(img/shock/8.png);}
+	80% {background-image: url(img/shock/9.png);}
+	100% {background-image: url(img/shock/10.png);transform:scaleY(1.8) scaleX(-2.3) translateY(-15%);}
+}
+
+@keyframes manAngryAnim {
+	0% {background-image: url(img/manAngry/2.png);}
+	50% {background-image: url(img/manAngry/3.png);}
+	100% {background-image: url(img/manAngry/4.png);}	
+}
