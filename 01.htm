@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="all.css" rel="stylesheet">
+
+</head>
+<body>
+<audio id="auStart" src="audio/start.mp3"></audio>
+<audio id="auMusic" src="audio/delakam.mp3"></audio>
+<audio id="auWalk" src="audio/walk.mp3"></audio>
+<audio id="auDoor" src="audio/door.mp3"></audio>
+<audio id="auPhone" src="audio/phoneRing.mp3"></audio>
+<audio id="auTalk" src="audio/hashemi.ogg"></audio>
+<audio id="auBobox" src="audio/bobox.mp3"></audio>
+<audio id="auAct" src="audio/act.mp4"></audio>
+<audio id="auMan" src="audio/man.mp3"></audio>
+<audio id="auLaugh" src="audio/laugh2.mp3"></audio>
+<audio id="auSosis" src="audio/sosis.mp3"></audio>
+<audio id="auBye" src="audio/bye.mp3"></audio>
+
+<div id="stage">
+	<div id="door1" class="">  </div>
+	<div id="door2" class="">  </div>
+	<div id="man" class="">  </div>
+	<div id="floor">  </div>	
+	<div id="komod">  </div>
+	<div id="phone">  </div>	
+	<div id="boy">  </div>
+	<div id="musicBtn">  </div>
+	<div id="dark" class="hide">  </div>
+	<div id="result" class="hide">  </div>
+	
+</div>
+
+<script>
+
+/*  walking  */
+
+var pos = 800;
+var stepDone = 1;
+
+//auStart.play();
+
+function walkTo(xLoc){
+	if(stepDone == 1){
+		stepDone = 0;
+		auWalk.play();
+		boy.className = "";
+		
+		let steps = 0;
+		
+		if(pos - xLoc > 0){
+			steps = Math.ceil(Math.abs(pos-xLoc)/300);
+			//alert(steps);
+			boy.style.transition = 	steps + "s";
+			boy.style.animationIterationCount = steps;
+			pos = xLoc;
+			boy.style.left = pos + "px";
+			boy.className = "walkLeft";
+		}
+		else{
+			steps = Math.ceil(Math.abs(pos-xLoc)/300);
+			//alert(steps);
+			boy.style.transition = 	steps + "s";
+			boy.style.animationIterationCount = steps;
+			pos = xLoc;
+			boy.style.left = pos + "px";
+			boy.className = "walkRight";
+		}
+		setTimeout(()=> {boy.className = ""; stepDone = 1;},steps*1000);
+	    
+		return steps;
+	}	
+}
+
+floor.onclick = function(e){
+
+	walkTo(e.pageX);	
+
+}
+
+
+/*  phone ring  */
+
+phone.onclick = function(e){
+	auMusic.pause();
+
+	stp = walkTo(e.pageX);
+	
+	setTimeout(()=>{
+		auPhone.play();
+	},stp*1000);	
+	
+	setTimeout(()=>{
+		auPhone.pause();
+		auTalk.play();
+	},stp*1000 + 2000);
+
+	setTimeout(()=> {
+		auDoor.play();
+		door1.className = "manDoorIn";
+	},stp*1000 + 5000);
+
+	setTimeout(()=> {
+		auMan.play();
+		man.className = "manAngry";
+	},stp*1000 + 6000);
+	
+	setTimeout(()=> {
+		if(isHide == 0) {
+			boy.className = "shock";
+			setTimeout(()=> {
+				result.className = "lose";
+				result.innerHTML = "ajab soosisi";
+
+				auTalk.pause();
+				auMan.pause();
+				auSosis.play();
+			},2500)
+		}
+		else{
+			setTimeout(()=> {
+				result.className = "win";
+				result.innerHTML = "felan kodafez";
+
+				auTalk.pause();
+				auMan.pause();
+				auBye.play();
+			},3000)
+		}
+	},stp*1000 + 6000);
+}
+
+
+boy.onclick = function(e){
+	auLaugh.play();
+	boy.style.backgroundImage = "url(img/laugh.gif)";	
+	
+	setTimeout(()=>{
+		boy.style.backgroundImage = "url(img/boy-left.png)";	
+	},5000);
+}
+
+
+/*  keybord events  */
+
+/*  music on / off */
+
+var musicOn = 0;
+
+musicBtn.onclick = function() {
+	if(musicOn == 0) {
+		auMusic.play();
+		musicOn = 1;
+	}
+	else if(musicOn == 1) {
+		auMusic.pause();
+		musicOn = 0;
+	}
+}
+
+
+door2.onclick = function(e) {
+	let stp = walkTo(e.pageX);
+	setTimeout(()=> {
+		auDoor.play();
+		auMusic.pause();
+		door2.className = "boyDoorOut";
+		boy.className = "hide";
+	},stp*1000);
+
+	setTimeout(()=> {
+		auBobox.play();
+		dark.className = "";
+	},stp*1000 + 2000);
+}
+
+dark.onclick = function() {
+	auDoor.play();
+	auBobox.pause();
+
+	this.className = "hide";
+	door2.className = "boyDoorIn";
+	setTimeout(()=>{
+		boy.className = "";
+	},800)
+}
+
+var isHide = 0;
+
+komod.onclick = function(e) {
+	let stp = walkTo(e.pageX);
+
+	setTimeout(()=> {
+		isHide = 1;
+		auMusic.pause();
+		auDoor.play();
+		boy.className = "hide";
+		komod.className = "hideIn";
+	},stp*1000);
+
+	setTimeout(()=>{
+		komod.className = "";
+	},stp*1000 + 1300);
+}
+
+</script>
+
+</body>
+</html>
